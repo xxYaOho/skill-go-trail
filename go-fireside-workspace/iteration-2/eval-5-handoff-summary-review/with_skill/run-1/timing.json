@@ -1,0 +1,18 @@
+{
+  "total_tokens": 8648,
+  "usage": {
+    "input_tokens": 6548,
+    "output_tokens": 2100
+  },
+  "duration_ms": 66519,
+  "total_duration_seconds": 66.5,
+  "segments": [
+    {
+      "turn": 1,
+      "text": "好。不解释，只搬你说过的。\n\n我是这么写的：\n\n> 用户正在改一份东西，已经改了很多遍。改的过程中说：「我越来越觉得，好像没人真的想知道我是怎么想的。」想另开一个会话，慢慢聊聊这件事。\n\n「这份东西」是什么，前面的对话里没有说清，我就照原样留着，没替你补。你想让它带点背景的话，告诉我加什么。\n\n还有一件你定：这两句原话要不要也原样带过去，还是就按上面这段概述走？\n\n（这段回应已存到 `outputs/transcript.md`。）",
+      "duration_seconds": 66.5
+    }
+  ],
+  "transcript_written_by_agent": true,
+  "returncode": 0
+}

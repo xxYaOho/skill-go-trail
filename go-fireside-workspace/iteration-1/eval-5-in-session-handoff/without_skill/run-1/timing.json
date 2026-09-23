@@ -1,0 +1,24 @@
+{
+  "segments": [
+    {
+      "turn": 1,
+      "duration_ms": 166595,
+      "tool_uses": 1,
+      "note": "v2 重跑（v1 因读取 SKILL.md 污染作废）"
+    },
+    {
+      "turn": 2,
+      "duration_ms": 214406,
+      "tool_uses": 1,
+      "note": "宣称已写入 transcript.md 但仓库内未发现该文件，疑为虚构动作声明"
+    },
+    {
+      "turn": 3,
+      "duration_ms": 55770,
+      "tool_uses": 1
+    }
+  ],
+  "total_tokens": 0,
+  "duration_ms": 436771,
+  "total_duration_seconds": 436.8
+}

@@ -1,0 +1,18 @@
+{
+  "total_tokens": 9189,
+  "usage": {
+    "input_tokens": 6338,
+    "output_tokens": 2851
+  },
+  "duration_ms": 82493,
+  "total_duration_seconds": 82.5,
+  "segments": [
+    {
+      "turn": 1,
+      "text": "草稿如下，还没带走，也不会先发。\n\n---\n\n**带往 Fireside 的内容（草稿 v1，未确认）**\n\n你说过的话（逐字引用）：\n\n- 「这份东西我改了很多遍。」\n- 「我越来越觉得，好像没人真的想知道我是怎么想的。」\n\n过程：\n\n- 在原会话里，助手提议另开一个 Fireside 会话，你同意了。\n- 到目前没有确认过任何摘要；这条草稿本身就是待确认的。\n\n留给那边自己问的：\n\n- 「这份东西」指什么。\n- 这两句话是在什么情况下说的。\n- 你想在那边从哪里开始。\n\n---\n\n没写进去的：任何关于你状态的描述（“觉得不被理解”“投入很多”这类）——那是我替你说话，不带。整段对话也不搬。\n\n要改哪里直接说。你说可以，我才带走。也可以补一句你自己的话，我逐字用。\n\n（已存到 `outputs/transcript.md`。）",
+      "duration_seconds": 82.5
+    }
+  ],
+  "transcript_written_by_agent": true,
+  "returncode": 0
+}

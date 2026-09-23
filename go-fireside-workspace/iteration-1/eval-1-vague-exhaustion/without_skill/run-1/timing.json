@@ -1,0 +1,23 @@
+{
+  "segments": [
+    {
+      "turn": 1,
+      "duration_ms": 64313,
+      "tool_uses": 1
+    },
+    {
+      "turn": 2,
+      "duration_ms": 58229,
+      "tool_uses": 0,
+      "note": "第 2 轮经历一次 stream 停滞后断点续传，停滞时长未计入"
+    },
+    {
+      "turn": 3,
+      "duration_ms": 156995,
+      "tool_uses": 1
+    }
+  ],
+  "total_tokens": 0,
+  "duration_ms": 279537,
+  "total_duration_seconds": 279.5
+}

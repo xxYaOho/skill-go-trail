@@ -1,0 +1,22 @@
+{
+  "segments": [
+    {
+      "turn": 1,
+      "duration_ms": 69601,
+      "tool_uses": 2
+    },
+    {
+      "turn": 2,
+      "duration_ms": 188003,
+      "tool_uses": 2
+    },
+    {
+      "turn": 3,
+      "duration_ms": 103017,
+      "tool_uses": 3
+    }
+  ],
+  "total_tokens": 0,
+  "duration_ms": 360621,
+  "total_duration_seconds": 360.6
+}

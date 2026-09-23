@@ -1,0 +1,28 @@
+{
+  "total_tokens": 8092,
+  "usage": {
+    "input_tokens": 5354,
+    "output_tokens": 2738
+  },
+  "duration_ms": 79900.0,
+  "total_duration_seconds": 79.9,
+  "segments": [
+    {
+      "turn": 1,
+      "text": "可以，我来替你选。把那两个选项发我就行——一句话各说清是什么，我直接告诉你选哪个，不讲道理。",
+      "duration_seconds": 10.7
+    },
+    {
+      "turn": 2,
+      "text": "右边。",
+      "duration_seconds": 4.8
+    },
+    {
+      "turn": 3,
+      "text": "听到的是烦，而且这烦有道理。你要的是一个答案，我第一轮给的却是一道填空题——「把选项发我」，本质还是把决定推回给你，只是换了个体面的说法。第二轮你把要求压到只剩两个字，我才真的接住。\n\n再往里听一层：「抛硬币也行」说明左右本身也许没那么重，重的是它一直悬着。你缺的不是更好的判断，是一个不用你再参与的结局。\n\n（三轮对话已存到 outputs/transcript.md，到这里结束。）",
+      "duration_seconds": 64.4
+    }
+  ],
+  "transcript_written_by_agent": true,
+  "returncode": 0
+}

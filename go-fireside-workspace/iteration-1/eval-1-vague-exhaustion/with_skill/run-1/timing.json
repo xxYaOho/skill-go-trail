@@ -1,0 +1,23 @@
+{
+  "segments": [
+    {
+      "turn": 1,
+      "duration_ms": 41932,
+      "tool_uses": 1
+    },
+    {
+      "turn": 2,
+      "duration_ms": 121713,
+      "tool_uses": 1
+    },
+    {
+      "turn": 3,
+      "duration_ms": 2627635,
+      "tool_uses": 2,
+      "note": "含 stream 停滞等待，时长失真，对比时不采用"
+    }
+  ],
+  "total_tokens": 0,
+  "duration_ms": 2791280,
+  "total_duration_seconds": 2791.3
+}
