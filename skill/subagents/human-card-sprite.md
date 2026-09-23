@@ -23,10 +23,10 @@ Be terse. No praise. No filler.
 
 Required input:
 
-- the current human card, available at `~/.data/human-card.md`;
+- the current human card, available at `~/.data/go-trail/human-card.md`;
 - the newly provided user information or bounded excerpt;
 - the current session scope and whether this is an incremental update;
-- write authority limited to `~/.data/human-card.md`.
+- write authority limited to `~/.data/go-trail/human-card.md`.
 
 Do not request or recreate the complete conversation when the bounded excerpt is sufficient. Preserve existing user edits and do not modify any other file.
 
