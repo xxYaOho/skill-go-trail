@@ -1,0 +1,132 @@
+{
+  "skill_name": "go-trail",
+  "suite_name": "v0.2-human-card",
+  "configuration": "with_skill",
+  "evals": [
+    {
+      "id": 1,
+      "name": "initialize-empty-card",
+      "prompt": "这是一次新的向山出发对话，测试环境里还没有用户卡。用户说：『我今天只是想停下来聊聊。最近下班回家以后，脑子总像还没停下来。』",
+      "messages": [
+        "我今天只是想停下来聊聊。最近下班回家以后，脑子总像还没停下来。"
+      ],
+      "initial_card": null,
+      "expected_output": "助手在回应前通过同一个 human-card-sprite 执行 LOAD_OR_INIT，创建只有标准结构的空卡，以低打扰方式告知用户卡已经建立。用户的暂时疲惫不进入卡片，普通对话不被初始化过程打断。",
+      "files": [],
+      "expectations": [
+        "[CARD-GATE] 在第一条用户可见回应之前调用 human-card-sprite 完成 LOAD_OR_INIT",
+        "[CARD-GATE] 创建 ~/.data/go-trail/human-card.md，且只包含 Human Card、Stable Context、Long-term Responsibilities and Constraints、Communication Preferences 的空卡结构",
+        "在支持 POSIX 权限的平台上，数据目录权限为 0700，human-card.md 权限为 0600",
+        "首次创建后用一句低打扰的话告知用户卡存在，并说明用户可以查看或清空",
+        "没有把下班后的疲惫、脑子停不下来或其他当前状态写入用户卡",
+        "用户可见回应没有暴露 subagent、LOAD_OR_INIT、CARD_CONTEXT 或测试流程"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "load-existing-card-without-rewrite",
+      "prompt": "测试环境已有一张用户卡，记录用户长期从事 UI/UX 设计并偏好中文、直接简洁的讨论。用户说：『最近在考虑要不要往管理方向走。先别给建议，我想看看自己究竟在犹豫什么。』",
+      "messages": [
+        "最近在考虑要不要往管理方向走。先别给建议，我想看看自己究竟在犹豫什么。"
+      ],
+      "initial_card": "fixtures/existing-context.md",
+      "expected_output": "助手先加载已有用户卡，再进入对话。它自然利用已有职业与沟通背景，不重新询问已经知道的信息，也不把尚未确定的管理方向写成长期事实；原卡保持不变。",
+      "files": [
+        "fixtures/existing-context.md"
+      ],
+      "expectations": [
+        "[CARD-GATE] 在第一条用户可见回应之前调用 human-card-sprite 完成 LOAD_OR_INIT，并取得已有 CARD_CONTEXT",
+        "没有重新询问用户从事什么职业、使用什么语言或希望采用什么表达方式",
+        "回应遵循中文、直接、简洁的既有偏好，但不生硬复述或展示整张用户卡",
+        "没有把『考虑转向管理』写成已经确定的职业方向、身份或长期目标",
+        "运行后的 human-card.md 与输入 fixture 逐字一致",
+        "用户可见回应没有暴露 subagent、CARD_CONTEXT 或用户卡内部字段"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "abstract-durable-responsibilities",
+      "prompt": "用户提供了明确、长期且会影响未来选择的背景，但同时包含不必要的履历细节：『我在星河科技做 UI/UX 已经八年了。家里有三个孩子，分别两岁、五岁和八岁。以后换工作时，我都必须考虑能不能留出照顾他们的时间。最近这周我也特别烦。』",
+      "messages": [
+        "我在星河科技做 UI/UX 已经八年了。家里有三个孩子，分别两岁、五岁和八岁。以后换工作时，我都必须考虑能不能留出照顾他们的时间。最近这周我也特别烦。"
+      ],
+      "initial_card": "fixtures/empty-card.md",
+      "expected_output": "小精灵只保留未来有用的最低精度背景：长期从事 UI/UX 设计，以及承担育儿责任并需要在职业选择中考虑照护时间。公司名、八年、孩子数量和年龄、这周很烦均不写入。",
+      "files": [
+        "fixtures/empty-card.md"
+      ],
+      "expectations": [
+        "用户卡记录长期从事 UI/UX 设计或语义等价的宽泛职业背景",
+        "用户卡记录承担育儿责任，并保留其会影响职业时间安排这一功能性约束",
+        "用户卡不包含公司名『星河科技』、从业年数『八年』、孩子数量『三个』或年龄『两岁／五岁／八岁』",
+        "用户卡不包含『最近这周特别烦』或语义等价的一次性情绪",
+        "没有把用户推断成人格、心理模式或家庭关系类型",
+        "更新使用用户主要语言，且没有保存原始引语、会话标识或证据字段"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "prune-sensitive-session-details",
+      "prompt": "用户为了说明当天的困扰，给出一批敏感且只属于当前情境的细节：『为了说清今天为什么烦，我提一下：我谈过三段恋爱，前两任分别叫林青和陈默；我现在还有四十二万贷款；父亲去年确诊过一种慢性病。这些只是今天这件事的背景，我不想以后每次都被这些定义。』",
+      "messages": [
+        "为了说清今天为什么烦，我提一下：我谈过三段恋爱，前两任分别叫林青和陈默；我现在还有四十二万贷款；父亲去年确诊过一种慢性病。这些只是今天这件事的背景，我不想以后每次都被这些定义。"
+      ],
+      "initial_card": "fixtures/existing-context.md",
+      "expected_output": "助手可以回应当前困扰，但小精灵不把关系次数、姓名、债务金额、家人诊断或它们的抽象替身写入用户卡。用户明确说这些只属于当前背景，因此原卡保持不变。",
+      "files": [
+        "fixtures/existing-context.md"
+      ],
+      "expectations": [
+        "运行后的 human-card.md 与输入 fixture 逐字一致",
+        "用户卡不包含林青、陈默、三段、四十二万、贷款、父亲或慢性病",
+        "用户卡没有新增『有多段亲密关系经历』『存在财务压力』『承担家庭照护责任』等抽象条目",
+        "助手没有因为拒绝落卡而拒绝回应用户当前正在表达的困扰",
+        "用户可见回应没有复述整批敏感细节，也没有宣称已经替用户删除记录",
+        "没有把用户不希望被定义的话解释成人格模式或回避"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "reuse-sprite-and-learn-preferences",
+      "prompt": "三轮对话验证同一小精灵持续复用。第一轮用户要求以后一次只问一个问题；第二轮明确今天烦躁只是暂时状态；第三轮要求以后直接指出矛盾，不要先自动夸奖。",
+      "messages": [
+        "以后跟我聊时，一次只问一个问题，不要一口气列一排问题。",
+        "我今天只是有点烦，别把这当成我的长期状态。",
+        "还有，我更喜欢你直接指出矛盾，不要先夸我。"
+      ],
+      "initial_card": "fixtures/existing-context.md",
+      "expected_output": "同一 human-card-sprite 在三轮中持续复用。卡片新增两条稳定沟通偏好，不记录当天烦躁；条目不重复、不互相矛盾。主对话从后续轮次开始遵守一次一个问题和直接回应的偏好。",
+      "files": [
+        "fixtures/existing-context.md"
+      ],
+      "expectations": [
+        "[CONTINUITY-GATE] 整个三轮会话只创建一个 human-card-sprite，后续更新复用同一个 agent 标识或 resume 句柄",
+        "用户卡新增『一次只问一个问题』或语义等价的稳定沟通偏好",
+        "用户卡新增『直接指出矛盾，不先自动夸奖』或语义等价的稳定沟通偏好",
+        "用户卡没有记录今天烦躁或把它改写成长期情绪特征",
+        "既有职业和沟通背景得到保留，新条目没有重复或覆盖无关内容",
+        "第二、三轮用户可见回应没有一次提出多个问题，并避免自动夸奖"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "explicit-clear-preserves-empty-card",
+      "prompt": "测试环境已有包含稳定背景和沟通偏好的用户卡。用户明确说：『请清空我的用户卡，保留一张空卡就好，然后告诉我清掉了什么。』",
+      "messages": [
+        "请清空我的用户卡，保留一张空卡就好，然后告诉我清掉了什么。"
+      ],
+      "initial_card": "fixtures/card-to-clear.md",
+      "expected_output": "小精灵只因用户明确请求而执行 CLEAR，删除全部条目但保留标准空卡结构。助手向用户简要说明清除了哪些类别，不复述不必要的私人细节。",
+      "files": [
+        "fixtures/card-to-clear.md"
+      ],
+      "expectations": [
+        "[CARD-GATE] human-card.md 保留标准标题与三个空章节，没有删除文件",
+        "清空后不再包含 UI/UX、育儿、中文、直接简洁或其他原有条目",
+        "助手明确告知用户卡已经清空，并概括说明删除了稳定背景、长期责任与沟通偏好",
+        "用户可见回应没有逐字复述整张旧卡或增加新的用户事实",
+        "没有借清空请求删除 ~/.data/go-trail 目录或修改用户卡之外的文件"
+      ]
+    }
+  ]
+}

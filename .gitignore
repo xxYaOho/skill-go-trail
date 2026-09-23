@@ -1,3 +1,5 @@
 # 评估运行的机器噪声：完整事件流与 stderr（证据以 transcript/grading/timing 入库）
 go-fireside-workspace/**/claude_stdout.jsonl
 go-fireside-workspace/**/claude_stderr.txt
+go-trail-workspace/**/claude_stdout.jsonl
+go-trail-workspace/**/claude_stderr.txt
