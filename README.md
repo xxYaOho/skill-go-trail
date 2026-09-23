@@ -13,8 +13,8 @@
 ## 快速开始
 
 ```bash
-git clone https://github.com/xxYaOho/skill-go-fireside.git
-cd skill-go-fireside
+git clone https://github.com/xxYaOho/skill-go-trail.git
+cd skill-go-trail
 mkdir -p ~/.agents/skills
 ln -s "$(pwd)/skill" ~/.agents/skills/go-trail
 ```
