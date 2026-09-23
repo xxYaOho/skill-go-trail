@@ -6,12 +6,12 @@
 
 - 读 `README.md` 了解产品定位、安装方式和用户体验
 - 读 `skill/SKILL.md` 了解实际触发条件、对话边界、安全例外和用户卡协议
-- 需要维护用户卡时，读 `skill/subagents/human-card-sprite.md` 了解小精灵的输入、输出和写入边界
+- 加载本 Skill 时，读 `skill/subagents/human-card-sprite.md`，创建并在会话内复用同一个小精灵
 - 修改前检查工作区，保留 Human 已有改动
 
 ## Who is it
 
-- 主对话由 orchestrator 直接承担；用户卡维护由可选的会话级 subagent 小精灵承担
+- 主对话由 orchestrator 直接承担；用户卡读取、初始化与维护由会话级 subagent 小精灵承担
 - Skill 名称固定为 `go-trail`
 - 行为合同与版本真源在 `skill/SKILL.md`
 - 小精灵的职责合同在 `skill/subagents/human-card-sprite.md`
